@@ -47,6 +47,7 @@ button:focus {
 	margin: 15px;
 	border-radius: 7px;
 	text-align: center;
+	position: relative;
 }
 #poll-box-button{
 	background-color: #fcfcfc;
@@ -58,6 +59,50 @@ button:focus {
 }
 #poll-box-button:hover{
 	background-color: #ededed;
+}
+.voting-area{
+	display: inline-block;
+	width: 50%;
+}
+#choose-poll-input{
+	display: block;
+	margin: 10px;
+	box-sizing: border-box;
+	width: 50%;
+	height: 35px;
+	background-color: #FFFAFA;
+	color: #000;
+	border-radius: 3px;
+	border: 1px solid #999999;
+	padding-left: 10px;
+}
+.submit-text{
+	text-align: left;
+	margin: 10px; 
+}
+#submit-button{
+	display: block;
+	margin: 10px;
+	width: 50%;
+	height: 35px;
+	background-color: #98503C;
+	color: #fff;
+	border-radius: 3px;
+	border: none;
+}
+#share-twitter-button{
+	display: block;
+	margin: 10px;
+	width: 50%;
+	height: 35px;
+	background-color: #55ACEE;
+	color: #fff;
+	border-radius: 3px;
+	border: none;
+}
+.chart-area{
+	display: inline-block;
+	width: 50%;
 }
 .footnote{
 	margin: 15px;
