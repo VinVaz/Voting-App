@@ -43,6 +43,14 @@ body{
 	border-radius: 7px;
 	text-align: center;
 }
+#poll-box-button{
+	background-color: #fcfcfc;
+	height: 30px;
+	width: 100%;
+	border-radius: 3px;
+	border: none;
+	margin: 1px;
+}
 .footnote{
 	margin: 15px;
 	text-align: center;
