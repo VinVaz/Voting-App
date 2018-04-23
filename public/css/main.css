@@ -8,6 +8,25 @@ body{
 	padding: 10px;
 	margin: 0px 15px 15px 15px;
 	display: block;
+	position: relative;
+}
+#home-button{
+    height: 35px;
+	background-color: #afafaf;
+	color: #fff;
+	border: none;
+	position: absolute;
+	right: 200px;
+}
+#twitter-sign-button{
+    height: 35px;
+	width: 150px;
+	background-color: #3434ff;
+	color: #fff;
+	border-radius: 5px;
+	border: none;
+	position: absolute;
+	right: 20px;
 }
 #header-program-name{
 	color: #434343;
