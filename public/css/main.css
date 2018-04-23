@@ -21,7 +21,7 @@ body{
 #twitter-sign-button{
     height: 35px;
 	width: 150px;
-	background-color: #3434ff;
+	background-color: #55ACEE;
 	color: #fff;
 	border-radius: 5px;
 	border: none;
@@ -30,7 +30,10 @@ body{
 }
 #header-program-name{
 	color: #434343;
-	font-size: 20px;
+	font-size: 25px;
+    font-family: Arial;
+	position: absolute;
+	left: 20px;
 }
 .body-container{
 	background-color: #dedede;
