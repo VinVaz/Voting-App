@@ -2,6 +2,12 @@ body{
 	padding: 0px;
 	margin: 0px;
 }
+button{
+	cursor: pointer;
+}
+button:focus {
+	outline:0;
+}
 .header-container{
 	background-color: #dedede;
 	height: 35px;
@@ -37,7 +43,6 @@ body{
 }
 .body-container{
 	background-color: #dedede;
-	height: 100px;
 	padding: 60px 30px 30px 30px;
 	margin: 15px;
 	border-radius: 7px;
@@ -50,6 +55,9 @@ body{
 	border-radius: 3px;
 	border: none;
 	margin: 1px;
+}
+#poll-box-button:hover{
+	background-color: #ededed;
 }
 .footnote{
 	margin: 15px;
