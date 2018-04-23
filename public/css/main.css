@@ -1,0 +1,17 @@
+.header-container{
+	background-color: #dedede;
+	padding: 10px;
+	margin: 15px;
+	border-radius: 7px;
+}
+.body-container{
+	background-color: #dedede;
+	height: 50px;
+	padding: 10px;
+	margin: 15px;
+	border-radius: 7px;
+}
+.footnote{
+	margin: 15px;
+	text-align: center;
+}
