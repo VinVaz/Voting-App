@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var User = new Schema({
 	poll:{
+		name: String,
 		option:{
 			name: String,
 			clicks: Number
