@@ -49,7 +49,7 @@ button:focus {
 	text-align: center;
 	position: relative;
 }
-#poll-box-button{
+.poll-box-button{
 	background-color: #fcfcfc;
 	height: 30px;
 	width: 100%;

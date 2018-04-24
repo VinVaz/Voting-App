@@ -15,7 +15,7 @@ function ClickHandler(){
 	};
 	this.addClicks = function(req, res){
 		Users
-		    .findOneAndUpdate({}, {'poll.option.clicks': 1})
+		    .findOneAndUpdate({}, {$inc: {'poll.option.clicks': 1}})
 			.exec(function(err, result){
 			    if(err){throw err;}
 			    res.json(result.poll);
