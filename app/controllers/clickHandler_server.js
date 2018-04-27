@@ -7,7 +7,7 @@ function ClickHandler(){
 
 	this.getClicks = function(req, res){  
 		Users
-		    .findOne({}, {'_id': false})
+		    .findOne({"poll.name": "Best food"}, {'_id': false, 'poll': true})
 			.exec(function(err, result){
 			    if(err){ throw err};
 			    res.json(result);			
@@ -15,7 +15,7 @@ function ClickHandler(){
 	};
 	this.addClicks = function(req, res){
 		Users
-		    .findOneAndUpdate({}, {$inc: {'poll.options.$.clicks': 1}})
+		    .findOneAndUpdate({"poll.name": "Best food"}, {$inc: {'poll.options.1.clicks': 1}})
 			.exec(function(err, result){
 			    if(err){throw err;}
 			    res.json(result);

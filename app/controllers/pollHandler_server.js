@@ -3,35 +3,17 @@
 var path = process.cwd();
 var Users = require('../models/users.js');
 
-function PollHandler(){
-    
-	this.addOption = function(req, res){  
+module.exports = function pollApiServer(req, res){  
 		Users
-	.findOneAndUpdate({$and: [{"poll.options.name": {$ne:"japan"}}, {"poll.name": "Best country"}]}, {$push: {"poll.options": {"name":"japan", "clicks": 1}}})
+	   .find({}, {'_id': false, 'poll.name': true})
 			.exec(function(err, result){
 			    if(err){throw err;}
-			    res.json(result);
+				var message = [];
+				for(var i = 0; i < result.length; i++){
+					message[i] = result[i].poll;
+				}
+			    res.json(message);
 		    });
-		    
-	};
-	this.deleteOption = function(req, res){  
-		Users
-		    .findOneAndUpdate({"poll.name": "Biggest Country"}, {$set: {"poll.options": []}})
-			.exec(function(err, result){
-			    if(err){throw err;}
-			    res.json(result);
-		    });
-	}; 
-	this.addPoll = function(req, res){
-		Users.create({"poll.name": "Best country"})	
-	};
-	this.deletePoll = function(req, res){	
-		Users    
-			.deleteOne({"poll.name":"Places"})
-			.exec(function(err, result){
-			    if(err){throw err;}
-			    res.json(result);
-		    });
-	};
-}
-module.exports = PollHandler;
+};
+
+

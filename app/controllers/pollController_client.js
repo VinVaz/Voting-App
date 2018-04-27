@@ -2,8 +2,7 @@
 
 (function(){
 	var boxSpace = document.getElementById("poll-boxes-space");
-	var dropDownList = document.getElementById("drop-down-list");
-	var apiUrl = appUrl + '/api/clicks';
+	var apiUrl = appUrl + '/api/polls';
 	
 	function createNewPollBox(){
 		var link = document.createElement('A');
@@ -17,27 +16,15 @@
 		boxSpace.appendChild(link);
 	}
 	function updatePollBox(data){
+			console.log("Im running");
 		var pollObject = JSON.parse(data);
-		var poll = pollObject.name;
+		var poll = pollObject.poll.name;
 		createNewPollBox();
 		//change this query selector so that it can perform 
 		//changes for all of the buttons that will be created:
 		var pollButton = document.querySelector(".poll-box-button");
 		pollButton.innerHTML = poll;
 	}
-	function createNewOptionElement(name){
-		var option = document.createElement('OPTION');
-		option.innerHTML = name;
-		dropDownList.appendChild(option);
-	}
-	function updateDropDownList(data){
-	  var pollObject = JSON.parse(data);
-	  var numOfOptions = pollObject.options.length;
-	  for(var i = 0; i < numOfOptions; i++){
-		  var name = pollObject.options[i].name;
-		  createNewOptionElement(name);
-	  }
-	}
-	//ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
-	//ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updatePollBox));
+
+	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updatePollBox));
 })();
