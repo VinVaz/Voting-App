@@ -7,7 +7,7 @@ function PollHandler(){
     
 	this.addOption = function(req, res){  
 		Users
-		    .findOneAndUpdate({"poll.options.name": {$ne:"canada"}}, {$push: {"poll.options": {"name":"canada", "clicks": 0}}})
+	.findOneAndUpdate({$and: [{"poll.options.name": {$ne:"japan"}}, {"poll.name": "Best country"}]}, {$push: {"poll.options": {"name":"japan", "clicks": 1}}})
 			.exec(function(err, result){
 			    if(err){throw err;}
 			    res.json(result);
@@ -23,16 +23,11 @@ function PollHandler(){
 		    });
 	}; 
 	this.addPoll = function(req, res){
-		Users
-		    .create({"poll": {"name": "Biggest Country", "options": []}})
-			.exec(function(err, result){
-			    if(err){throw err;}
-			    res.json(result);
-		    });
+		Users.create({"poll.name": "Best country"})	
 	};
 	this.deletePoll = function(req, res){	
 		Users    
-			.deleteOne({"poll.name":"Biggest Country"})
+			.deleteOne({"poll.name":"Places"})
 			.exec(function(err, result){
 			    if(err){throw err;}
 			    res.json(result);
