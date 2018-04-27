@@ -32,13 +32,12 @@
 	}
 	function updateDropDownList(data){
 	  var pollObject = JSON.parse(data);
-	  var arrOfOptions = Object.keys(pollObject.option);
-	  var numOfOptions = arrOfOptions.length;
+	  var numOfOptions = pollObject.options.length;
 	  for(var i = 0; i < numOfOptions; i++){
-		  var name = arrOfOptions[i]
+		  var name = pollObject.options[i].name;
 		  createNewOptionElement(name);
 	  }
 	}
-	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
-	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updatePollBox));
+	//ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
+	//ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updatePollBox));
 })();

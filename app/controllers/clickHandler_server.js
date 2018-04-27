@@ -10,15 +10,15 @@ function ClickHandler(){
 		    .findOne({}, {'_id': false})
 			.exec(function(err, result){
 			    if(err){ throw err};
-			    res.json(result.poll);			
+			    res.json(result);			
 			});
 	};
 	this.addClicks = function(req, res){
 		Users
-		    .findOneAndUpdate({}, {$inc: {'poll.option.clicks': 1}})
+		    .findOneAndUpdate({}, {$inc: {'poll.options.$.clicks': 1}})
 			.exec(function(err, result){
 			    if(err){throw err;}
-			    res.json(result.poll);
+			    res.json(result);
 		    });
 	};
 }
