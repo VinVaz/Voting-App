@@ -64,7 +64,7 @@ button:focus {
 	display: inline-block;
 	width: 50%;
 }
-#choose-poll-input{
+#drop-down-list{
 	display: block;
 	margin: 10px;
 	box-sizing: border-box;

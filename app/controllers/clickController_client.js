@@ -11,6 +11,7 @@
 		var votes = clicksObject.option.clicks;
 		chart.innerHTML = `food = ${food} ,votes = ${votes}`;
 	}
+	
 
 	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateClickCount));
 	
