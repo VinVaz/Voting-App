@@ -16,14 +16,15 @@ module.exports = function(app){
 	    res.redirect('/');
 	});
 	app.route('/profile').get(function(req, res){
-		res.sendFile(path + '/public/profile.html');
+		   res.sendFile(path + '/public/profile.html');
 	});
+		
 	app.route('/api/clicks')
-	    .get(clickHandler.getClicks);
-		
+	    .get(clickHandler.getClicks)
+    
 	app.route('/api/clicks/update')
-	    .get(clickHandler.addClicks);
-		
+	    .get(clickHandler.addClicks)	
+    
 	app.route('/api/polls')
 	    .get(pollServer);
 	/*	

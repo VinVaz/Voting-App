@@ -4,14 +4,15 @@ var path = process.cwd();
 var Users = require('../models/users.js');
 var URL = require('url');
 
-//only works the form request has only one value
-function getQueryAnswerFromReq(req){
+//only works for one query
+function queryParser(req){
   var myQuery = URL.parse(req.url).query;
-  var answer = "";
+  var arr = "";
   if(myQuery){
-	answer = myQuery.split("=")[1];
+	var arr = myQuery.split("=");
+    arr[0] = arr[0].replace(/[+]/g, " ");
   }
- return answer;  
+ return arr;  
 }
 
 function ClickHandler(){
@@ -24,13 +25,15 @@ function ClickHandler(){
 			});
 	};
 	this.addClicks = function(req, res){
-		var answer = getQueryAnswerFromReq(req);
+		var answer = queryParser(req)[1];
+		var question = queryParser(req)[0];
+		var operator = {$inc: {"poll.options.$.clicks": 1}}
 		Users
-		    .findOneAndUpdate({"poll.name": "Best food"}, {$inc: {'poll.options.0.clicks': 1}})
+		    .findOneAndUpdate({"poll.name": question, "poll.options.name": answer}, operator)
 			.exec(function(err, result){
 			    if(err){throw err;}
-			    res.json(result);
 		    });
+        res.redirect('back');		
 	};
 }
 module.exports = ClickHandler;

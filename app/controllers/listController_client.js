@@ -20,6 +20,6 @@
 		createNewOptionElement(name);
 	  }
 	}
-	
+
 	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
 })();
