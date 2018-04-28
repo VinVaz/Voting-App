@@ -8,6 +8,9 @@ button{
 button:focus {
 	outline:0;
 }
+option[value=""][disabled]{
+	display: none;
+}
 .header-container{
 	background-color: #dedede;
 	height: 35px;

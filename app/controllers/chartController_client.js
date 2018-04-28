@@ -18,10 +18,4 @@
 	}
 	
 	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateClickCount));
-	
-	submitButton.addEventListener('click', function(){
-		ajaxFunctions.newRequest('POST', apiUrl, function(){
-			ajaxFunctions.newRequest('GET', apiUrl, updateClickCount);
-		});
-	}, false);
 })();
