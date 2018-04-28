@@ -9,14 +9,24 @@
 		option.innerHTML = name;
 		dropDownList.appendChild(option);
 	}
-	function updateDropDownList(data){
+	function console(err, data){
+		if(err) throw err;
+		console.log(data);
+	}
+	function updateDropDownList(data, callback){
 	  var pollObject = JSON.parse(data);
+	  callback(null, pollObject);
+	  /*
 	  var numOfOptions = pollObject.pull.options.length;
-	  for(var i = 0; i < numOfOptions; i++){
-		  var name = pollObject.pull.options[i].name;
-		  createNewOptionElement(name);
-	  }
+	    for(var i = 0; i < numOfOptions; i++){
+		var name = pollObject.pull.options[i].name;
+		console.log(name);
+	*/
+		//createNewOptionElement(name);
 	}
 	
-	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
+	createNewOptionElement("pizza");
+	createNewOptionElement("burritos");
+	
+	//ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
 })();
