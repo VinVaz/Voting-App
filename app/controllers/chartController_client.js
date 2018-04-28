@@ -1,7 +1,6 @@
 'use strict';
 
 (function(){
-	var submitButton = document.querySelector("#submit-button");
 	var chart = document.querySelector("#chart-result");
 	var apiUrl = appUrl + '/api/clicks';
 	var deleteApiUrl = appUrl + '/api/clicks/user';

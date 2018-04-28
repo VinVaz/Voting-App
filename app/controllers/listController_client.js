@@ -11,7 +11,7 @@
 		dropDownList.appendChild(option);
 	}
 	
-	function updateDropDownList(data, callback){
+	function updateDropDownList(data){
 	  var pollObject = JSON.parse(data);
 	  dropDownList.setAttribute('NAME', pollObject.poll.name);
 	  var numOfOptions = pollObject.poll.options.length;

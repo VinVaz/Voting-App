@@ -19,8 +19,10 @@ module.exports = function(app){
 		res.sendFile(path + '/public/profile.html');
 	});
 	app.route('/api/clicks')
-	    .get(clickHandler.getClicks)
-		.post(clickHandler.addClicks);
+	    .get(clickHandler.getClicks);
+		
+	app.route('/api/clicks/update')
+	    .get(clickHandler.addClicks);
 		
 	app.route('/api/polls')
 	    .get(pollServer);
