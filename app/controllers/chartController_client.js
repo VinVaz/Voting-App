@@ -1,19 +1,35 @@
 'use strict';
 
 (function(){
-	var chart = document.querySelector("#chart-result");
 	var apiUrl = appUrl + '/api/clicks';
 	
-	function updateClickCount(data){
-		var clicksObject = JSON.parse(data);
-
-		var numOfOptions = clicksObject.poll.options.length;
-		for(var i = 0; i < numOfOptions; i++){
-		  var food = clicksObject.poll.options[i].name;
-		  var votes = clicksObject.poll.options[i].clicks;
-          chart.innerHTML = `food: ${food}, votes: ${votes}.\n`;
-		}
+	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateChart));
+	
+	function updateChart(data){
+	  var clicksObject = JSON.parse(data);
+	  var pollName = clicksObject.poll.name;
+	  var myOptions = clicksObject.poll.options;
+	  var chartDataArray = [["option", "votes"]];
+	  for(var i = 0; i < myOptions.length; i++){
+		var info = [myOptions[i].name, myOptions[i].clicks];
+        chartDataArray[i+1] = info;
+	  }
+	  createGoogleChart(pollName, chartDataArray);
+	 
 	}
 	
-	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateClickCount));
+	function createGoogleChart(name, contentArr){
+	  google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(contentArr);
+        var options = {
+          title: name
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+	}
+
 })();

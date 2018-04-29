@@ -7,6 +7,8 @@
 	function createNewPollBox(name){
 		var newLink = document.createElement('A');
 		//change this attribute later so that it can serve a specific user:
+		//create and attribute to the button so that it can send get requests
+		//to each page
 		newLink.setAttribute("href", "/profile");
 		
 		var newButton = document.createElement('BUTTON');

@@ -4,17 +4,6 @@ var path = process.cwd();
 var Users = require('../models/users.js');
 var URL = require('url');
 
-//only works for one query
-function queryParser(req){
-  var myQuery = URL.parse(req.url).query;
-  var arr = "";
-  if(myQuery){
-	var arr = myQuery.split("=");
-    arr[0] = arr[0].replace(/[+]/g, " ");
-  }
- return arr;  
-}
-
 function ClickHandler(){
 	this.getClicks = function(req, res){	
 		Users
@@ -36,4 +25,16 @@ function ClickHandler(){
         res.redirect('back');		
 	};
 }
+
+//only works for one query
+function queryParser(req){
+  var myQuery = URL.parse(req.url).query;
+  var arr = "";
+  if(myQuery){
+	var arr = myQuery.split("=");
+    arr[0] = arr[0].replace(/[+]/g, " ");
+  }
+ return arr;  
+}
+
 module.exports = ClickHandler;
