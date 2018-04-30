@@ -19,13 +19,59 @@ option[value=""][disabled]{
 	display: block;
 	position: relative;
 }
+.left-header{
+	display: inline-block;
+	width: 50%;
+	position: relative;
+	left: 10px;
+
+}
+.right-header{
+	display: inline-block;
+	width: 50%;
+	position: relative;
+	right: 10px;
+	text-align: right;
+}
+
+/**********************************************/
+#header-program-name{
+	color: #434343;
+	font-size: 25px;
+    font-family: Arial;
+}
+.profile-form{
+	display: inline-block;
+}
+#authorized-head-buttons{
+	display: inline-block;
+	position:relative;
+	text-align: center;
+	padding: 2px;
+	min-width: 20px;
+}
+#newpoll-button{
+	height: 35px;
+	color: #000;
+	border: none;
+	width: 80px;
+}
+#mypolls-button{
+	height: 35px;
+	color: #000;
+	border: none;
+	width: 80px;
+}
 #home-button{
     height: 35px;
 	background-color: #afafaf;
 	color: #fff;
 	border: none;
-	position: absolute;
-	right: 200px;
+}
+#profile-button{
+	height: 35px;
+	border: none;
+	width: 120px;
 }
 #twitter-sign-button{
     height: 35px;
@@ -34,16 +80,8 @@ option[value=""][disabled]{
 	color: #fff;
 	border-radius: 5px;
 	border: none;
-	position: absolute;
-	right: 20px;
 }
-#header-program-name{
-	color: #434343;
-	font-size: 25px;
-    font-family: Arial;
-	position: absolute;
-	left: 20px;
-}
+/**********************************************/
 .body-container{
 	background-color: #dedede;
 	padding: 60px 30px 30px 30px;
@@ -61,10 +99,10 @@ option[value=""][disabled]{
 	margin: 1px;
 	cursor: pointer;
 }
-#poll-box-button:focus {
+.poll-box-button:focus {
 	outline:0;
 }
-#poll-box-button:hover{
+.poll-box-button:hover{
 	background-color: #ededed;
 }
 .voting-area{
@@ -72,6 +110,18 @@ option[value=""][disabled]{
 	width: 50%;
 }
 #drop-down-list{
+	display: block;
+	margin: 10px;
+	box-sizing: border-box;
+	width: 50%;
+	height: 35px;
+	background-color: #FFFAFA;
+	color: #000;
+	border-radius: 3px;
+	border: 1px solid #999999;
+	padding-left: 10px;
+}
+#submit-new-option{
 	display: block;
 	margin: 10px;
 	box-sizing: border-box;
@@ -107,9 +157,51 @@ option[value=""][disabled]{
 	border-radius: 3px;
 	border: none;
 }
+#remove-button-button{
+	display: block;
+	margin: 10px;
+	width: 90%;
+	height: 35px;
+	background-color: #EF604C;
+	color: #fff;
+	border-radius: 3px;
+	border: none;
+}
 .chart-area{
 	display: inline-block;
 	width: 50%;
+}
+#newpoll-form-body{
+	text-align:left;
+}
+#title-input-newpoll{
+	margin: 10px;
+	width: 500px;
+	height: 35px;
+	background-color: #FFFAFA;
+	color: #000;
+	border-radius: 3px;
+	border: 1px solid #999999;
+	padding-left: 10px;
+}
+#options-input-newpoll{
+	margin: 10px;
+	width: 500px;
+	height: 35px;
+	background-color: #FFFAFA;
+	color: #000;
+	border-radius: 3px;
+	border: 1px solid #999999;
+	padding-left: 10px;
+}
+#make-poll-button{
+	margin: 10px;
+	width: 120px;
+	height: 35px;
+	background-color: #98503C;
+	color: #fff;
+	border-radius: 3px;
+	border: none;
 }
 .footnote{
 	margin: 15px;

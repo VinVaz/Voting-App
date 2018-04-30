@@ -6,6 +6,15 @@ const LoggedHandler = require(path + '/app/controllers/privateUserHandler_server
 var pollServer = require(path + '/app/controllers/pollHandler_server.js');
 
 module.exports = function(app){
+	function isLogged(req, res, next){
+		var ImLogged = false;
+		if(ImLogged){
+			return next();
+		}else{
+			res.redirect('/loggedprofile');
+		}
+	}
+	
 	var clickHandler = new ClickHandler();
 	var loggedHandler = new LoggedHandler();
 	
@@ -15,9 +24,20 @@ module.exports = function(app){
 	app.route('/home').get(function(req, res){
 	    res.redirect('/');
 	});
-	app.route('/profile').get(function(req, res){
+	app.route('/profile').get(isLogged, function(req, res){
 		   res.sendFile(path + '/public/profile.html');
 	});
+	////////////////IF LOGGED///////////////////////////
+	app.route('/newpoll').get(function(req, res){
+		res.sendFile(path + '/public/newpoll.html');
+	});
+	app.route('/mypolls').get(function(req, res){
+		res.sendFile(path + '/public/mypolls.html');
+	});
+	app.route('/loggedprofile').get(function(req, res){
+		res.sendFile(path + '/public/loggedprofile.html');
+	});
+	/////////////////////////////////////////////////////
 	app.route('/profile/:poll').get(function(req, res){
 		   req.session.poll = req.params.poll
 		   res.redirect('/profile');
@@ -30,13 +50,10 @@ module.exports = function(app){
     
 	app.route('/api/polls')
 	    .get(pollServer);
-	/*	
-	app.route('/api/clicks/user')
-	    .post(loggedHandler.addOption)
-		.delete(loggedHandler.deleteOption);
 	
-	app.route('/api/user')
-		.post(loggedHandler.addPoll)
+	/*
+	app.route('/newpoll/add')
+		.get(loggedHandler.addPoll)
 		.delete(loggedHandler.deletePoll);
-     */   		
+	*/
 }

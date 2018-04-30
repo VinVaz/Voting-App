@@ -2,34 +2,46 @@
 <html>
   <head>
     <title>YourPoll</title>
-	
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
-    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
   </head>
   
   <body>
+    <!-------------------------------------------------------------------->
     <div class="header-container">
-      <span id="header-program-name">YourPoll</span>
-      <button id="home-button">HOME</button>
-      <button id="twitter-sign-button">Sign in with Twitter</button>
-    </div>
-	<div class="body-container">
-	  <div class= "app-main-message">
-	    <h1>Make a new Poll</h1>
+	  <div class="left-header">
+        <span id="header-program-name">YourPoll</span>
+	  </div><div class="right-header">
+	    <a href="/home"><button id="home-button">HOME</button></a>
+		<div id="authorized-head-buttons">
+	      <a href="/mypolls"><button id="mypolls-button">My Polls</button></a>
+		  <a href="/newpoll"><button id="newpoll-button">New Poll</button></a>		
+		</div>
+	    <form class="profile-form">
+	      <select value="Foo" id="profile-button">
+		    <option>Sign out</option>
+		  </select>
+	    </form>
 	  </div>
-	  <form>
-	    Title:<br>
-	    <input type="text">
-		<br>Options:
-		<br>
-		<input type="text">
-		<br>
-		<input type="submit" value="make">
-	  </form>
-	  <div id="poll-boxes-space"></div>
+    </div>
+	<!-------------------------------------------------------------------->
+	<div class="body-container">
+	  <div id="newpoll-form-body">
+	  <div class= "app-main-message">
+	    <h2>Make a new Poll</h2>
+	  </div>
+	    <form>
+	      Title:<br>
+	      <input type="text" id="title-input-newpoll">
+		  <br>Options:
+		  <br>
+		  <input type="text" id="options-input-newpoll">
+		  <br>
+		  <input type="submit" value="make" id="make-poll-button">
+	    </form>
+	  </div>
 	</div>
 	<div class="footnote">
-	  <p>App build by VinVaz</p>
+	    <p>App build by <a href="https://github.com/VinVaz" target="_blank">VinVaz<a></p>
 	</div>
 	<script type="text/javascript" src="common/ajax-functions.js"></script>
 	<script type="text/javascript" src="controllers/pollController_client.js"></script>
