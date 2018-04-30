@@ -7,7 +7,7 @@ var URL = require('url');
 function ClickHandler(){
 	this.getClicks = function(req, res){	
 		Users
-		    .findOne({"poll.name": "Best food"}, {'_id': false, 'poll': true})
+		    .findOne({"poll.name": req.session.poll}, {'_id': false, 'poll': true})
 			.exec(function(err, result){
 			    if(err){ throw err};
 			    res.json(result);			

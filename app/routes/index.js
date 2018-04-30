@@ -16,10 +16,11 @@ module.exports = function(app){
 	    res.redirect('/');
 	});
 	app.route('/profile').get(function(req, res){
+		   req.session.poll = "Best country"
 		   res.sendFile(path + '/public/profile.html');
 	});
 	app.route('/api/:poll').get(function(req, res){
-		res.json(req.params.poll);
+		res.json(req.session.poll);
 	});
 	app.route('/api/:poll/clicks')
 	    .get(clickHandler.getClicks)
