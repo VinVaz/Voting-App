@@ -2,7 +2,7 @@
 
 (function(){
 	var dropDownList = document.getElementById("drop-down-list");
-	var apiUrl = appUrl + '/api/clicks';
+	var apiUrl = appUrl + '/api/:poll/clicks';
 	
 	function createNewOptionElement(name){
 		var option = document.createElement('OPTION');

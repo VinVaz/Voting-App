@@ -1,7 +1,7 @@
 'use strict';
 
 (function(){
-	var apiUrl = appUrl + '/api/clicks';
+	var apiUrl = appUrl + '/api/:poll/clicks';
 	
 	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateChart));
 	
@@ -15,7 +15,6 @@
         chartDataArray[i+1] = info;
 	  }
 	  createGoogleChart(pollName, chartDataArray);
-	 
 	}
 	
 	function createGoogleChart(name, contentArr){

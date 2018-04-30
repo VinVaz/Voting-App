@@ -18,14 +18,16 @@ module.exports = function(app){
 	app.route('/profile').get(function(req, res){
 		   res.sendFile(path + '/public/profile.html');
 	});
-		
-	app.route('/api/clicks')
+	app.route('/api/:poll').get(function(req, res){
+		res.json(req.params.poll);
+	});
+	app.route('/api/:poll/clicks')
 	    .get(clickHandler.getClicks)
     
-	app.route('/api/clicks/update')
+	app.route('/api/:poll/clicks/update')
 	    .get(clickHandler.addClicks)	
     
-	app.route('/api/polls')
+	app.route('/api/app/polls')
 	    .get(pollServer);
 	/*	
 	app.route('/api/clicks/user')

@@ -2,14 +2,12 @@
 
 (function(){
 	var boxSpace = document.getElementById("poll-boxes-space");
-	var apiUrl = appUrl + '/api/polls';
+	var apiUrl = appUrl + '/api/app/polls';
 	
 	function createNewPollBox(name){
 		var newLink = document.createElement('A');
-		//change this attribute later so that it can serve a specific user:
-		//create and attribute to the button so that it can send get requests
-		//to each page
-		newLink.setAttribute("href", "/profile");
+		var address = "/profile";
+		newLink.setAttribute("href", address);
 		
 		var newButton = document.createElement('BUTTON');
 		newButton.setAttribute("class", "poll-box-button");
