@@ -14,27 +14,15 @@ function ClickHandler(){
 			});
 	};
 	this.addClicks = function(req, res){
-		var answer = queryParser(req)[1];
-		var question = queryParser(req)[0];
+		var option = req.query[req.session.poll];
 		var operator = {$inc: {"poll.options.$.clicks": 1}}
 		Users
-		    .findOneAndUpdate({"poll.name": question, "poll.options.name": answer}, operator)
+		    .findOneAndUpdate({"poll.name": req.session.poll, "poll.options.name": option}, operator)
 			.exec(function(err, result){
 			    if(err){throw err;}
 		    });
         res.redirect('back');		
 	};
-}
-
-//only works for one query
-function queryParser(req){
-  var myQuery = URL.parse(req.url).query;
-  var arr = "";
-  if(myQuery){
-	var arr = myQuery.split("=");
-    arr[0] = arr[0].replace(/[+]/g, " ");
-  }
- return arr;  
 }
 
 module.exports = ClickHandler;

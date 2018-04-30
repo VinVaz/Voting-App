@@ -1,7 +1,7 @@
 'use strict';
 
 (function(){
-	var apiUrl = appUrl + '/api/:poll/clicks';
+	var apiUrl = appUrl + '/profile/:poll/api/clicks';
 	
 	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateChart));
 	

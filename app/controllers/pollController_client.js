@@ -2,19 +2,21 @@
 
 (function(){
 	var boxSpace = document.getElementById("poll-boxes-space");
-	var apiUrl = appUrl + '/api/app/polls';
+	var apiUrl = appUrl + '/api/polls';
 	
-	function createNewPollBox(name){
-		var newLink = document.createElement('A');
-		var address = "/profile";
-		newLink.setAttribute("href", address);
+	function createNewPollBox(pollName){
 		
-		var newButton = document.createElement('BUTTON');
+		var newForm = document.createElement('FORM');
+		var address = "profile/" + pollName;
+		newForm.setAttribute('action', address);
+		
+		var newButton = document.createElement('INPUT');
 		newButton.setAttribute("class", "poll-box-button");
-		newButton.innerHTML = name;
+		newButton.setAttribute("value", pollName);
+	    newButton.setAttribute("type", "submit");
 		
-		newLink.appendChild(newButton);
-		boxSpace.appendChild(newLink);
+		newForm.appendChild(newButton);
+		boxSpace.appendChild(newForm);
 	}
 	
 	function updatePollBox(data){

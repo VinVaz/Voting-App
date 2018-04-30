@@ -16,19 +16,19 @@ module.exports = function(app){
 	    res.redirect('/');
 	});
 	app.route('/profile').get(function(req, res){
-		   req.session.poll = "Best country"
 		   res.sendFile(path + '/public/profile.html');
 	});
-	app.route('/api/:poll').get(function(req, res){
-		res.json(req.session.poll);
+	app.route('/profile/:poll').get(function(req, res){
+		   req.session.poll = req.params.poll
+		   res.redirect('/profile');
 	});
-	app.route('/api/:poll/clicks')
+	app.route('/profile/:poll/api/clicks')
 	    .get(clickHandler.getClicks)
     
-	app.route('/api/:poll/clicks/update')
+	app.route('/profile/:poll/api/clicks/update')
 	    .get(clickHandler.addClicks)	
     
-	app.route('/api/app/polls')
+	app.route('/api/polls')
 	    .get(pollServer);
 	/*	
 	app.route('/api/clicks/user')

@@ -59,6 +59,10 @@ option[value=""][disabled]{
 	border-radius: 3px;
 	border: none;
 	margin: 1px;
+	cursor: pointer;
+}
+#poll-box-button:focus {
+	outline:0;
 }
 #poll-box-button:hover{
 	background-color: #ededed;
