@@ -51,9 +51,17 @@ module.exports = function(app){
 	app.route('/api/polls')
 	    .get(pollServer);
 	
-	/*
+	app.route('/newoption').get(function(req, res){
+		res.sendFile(path + '/public/newoption.html');
+	});
+	
+	app.route('/newoption/add')
+		.get(loggedHandler.addOption)
+	
 	app.route('/newpoll/add')
 		.get(loggedHandler.addPoll)
 		.delete(loggedHandler.deletePoll);
-	*/
+	
+	app.route('/newpoll/delete')
+		.get(loggedHandler.deletePoll)
 }

@@ -109,7 +109,7 @@ option[value=""][disabled]{
 	display: inline-block;
 	width: 50%;
 }
-#drop-down-list{
+.drop-down-list{
 	display: block;
 	margin: 10px;
 	box-sizing: border-box;
@@ -157,7 +157,7 @@ option[value=""][disabled]{
 	border-radius: 3px;
 	border: none;
 }
-#remove-button-button{
+#remove-button{
 	display: block;
 	margin: 10px;
 	width: 90%;

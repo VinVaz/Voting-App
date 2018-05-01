@@ -29,12 +29,12 @@
 	  <div class= "app-main-message">
 	    <h2>Make a new Poll</h2>
 	  </div>
-	    <form>
+	    <form action="/newpoll/add">
 	      Title:<br>
-	      <input type="text" id="title-input-newpoll">
+	      <input type="text" id="title-input-newpoll" name="name">
 		  <br>Options:
 		  <br>
-		  <input type="text" id="options-input-newpoll">
+		  <input type="text" id="options-input-newpoll" name="option">
 		  <br>
 		  <input type="submit" value="make" id="make-poll-button">
 	    </form>

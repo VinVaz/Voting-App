@@ -5,14 +5,15 @@ var Users = require('../models/users.js');
 
 function PollHandler(){
     
-	this.addOption = function(req, res){  
-		Users
-	.findOneAndUpdate({$and: [{"poll.options.name": {$ne:"japan"}}, {"poll.name": "Best country"}]}, {$push: {"poll.options": {"name":"japan", "clicks": 1}}})
+	this.addOption = function(req, res){
+		var name = req.session.poll
+	    var option = req.query["option"];
+	    Users
+	        .findOneAndUpdate({$and: [{"poll.options.name": {$ne: option}}, {"poll.name": name}]}, {$push: {"poll.options": {"name":option, "clicks": 1}}})
 			.exec(function(err, result){
 			    if(err){throw err;}
-			    res.json(result);
+			    res.redirect('/loggedprofile');
 		    });
-		    
 	};
 	this.deleteOption = function(req, res){  
 		Users
@@ -23,14 +24,23 @@ function PollHandler(){
 		    });
 	}; 
 	this.addPoll = function(req, res){
-		Users.create({"poll.name": "Best country"})	
-	};
-	this.deletePoll = function(req, res){	
-		Users    
-			.deleteOne({"poll.name":"Places"})
+		var name = req.query["name"]
+	    var option = req.query["option"];
+		Users.create({"poll.name": name});
+		Users
+	        .findOneAndUpdate({$and: [{"poll.options.name": {$ne: option}}, {"poll.name": name}]}, {$push: {"poll.options": {"name":option, "clicks": 1}}})
 			.exec(function(err, result){
 			    if(err){throw err;}
-			    res.json(result);
+			    res.redirect('/newpoll');
+		    });
+	};
+	this.deletePoll = function(req, res){	
+	    var name = req.session.poll
+		Users    
+			.deleteOne({"poll.name": name})
+			.exec(function(err, result){
+			    if(err){throw err;}
+			    res.redirect('/home');
 		    });
 	};
 }

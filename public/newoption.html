@@ -27,12 +27,13 @@
 	<!-------------------------------------------------------------------->
 	<div class="body-container">
 	  <div class= "voting-area">
-		<form action="/profile/:poll/api/clicks/update">
+		<form action="/newoption/add">
 		  <p class="submit-text">I want to vote for:</p>
-		  <select id="drop-down-list" class="drop-down-list">
-			<option value="" disabled selected>choose an option:</option>
-			<option>I want a custom option</option>
+		  <select class="drop-down-list">
+			<option value="" disabled selected>I want a custom option</option>
 		  </select>
+		  <p class="submit-text">New option:</p>
+		  <input id="submit-new-option" type="text" name="option"></input>
 		  <input id="submit-button" type="submit" value="Submit"></input>
 	    </form>
 		<form>
@@ -40,7 +41,7 @@
 	    </form>
 	  </div><div class="chart-area">
            <div id="piechart" style="width: 450px; height: 250px;"></div>
-		   <form action="newpoll/delete">
+		    <form action="newpoll/delete">
 		     <div><input id="remove-button" type="submit" value="remove this poll"></input></div>
 	       </form>
 	  </div>
