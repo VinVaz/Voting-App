@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>YourPoll</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
   </head>
   
@@ -16,11 +17,12 @@
 	      <a href="/mypolls"><button id="mypolls-button">My Polls</button></a>
 		  <a href="/newpoll"><button id="newpoll-button">New Poll</button></a>		
 		</div>
-	    <form class="profile-form">
-	      <select value="Foo" id="profile-button">
-		    <option>Sign out</option>
-		  </select>
-	    </form>
+		<div class="drop-down">
+	      <button class="profile-btn" id="profile-btn">Profile    <i class="fa fa-caret-down"></i></button>
+	      <div id="profile-list" class="profile-list" style="display:none">
+		    <a><button class="signout-btn">Sign out</button></a>
+		  </div>
+	    </div>
 	  </div>
     </div>
 	<!-------------------------------------------------------------------->
@@ -36,6 +38,7 @@
 	    <p>App build by <a href="https://github.com/VinVaz" target="_blank">VinVaz<a></p>
 	</div>
 	<script type="text/javascript" src="common/ajax-functions.js"></script>
+	<script type="text/javascript" src="common/signout.js"></script>
 	<script type="text/javascript" src="controllers/pollController_client.js"></script>
   </body>
   
