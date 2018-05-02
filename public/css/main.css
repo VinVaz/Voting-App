@@ -56,6 +56,41 @@ option[value=""][disabled]{
 	border: none;
 	width: 80px;
 }
+.drop-down{
+	display: inline-block;
+	position: relative;
+}
+.profile-list{
+	text-align: center;
+	position: absolute;
+	right: 0px;
+	top: 43px;
+	padding: 2px;
+	background-color: #fff;
+	min-width: 120px;
+	box-shadow: 8px;
+	z-index: 1;
+	border-radius: 3px;
+	border: 1px solid #999999;
+}
+.signout-btn{
+	display: block;
+	margin: 10px;
+	width: 150px;
+	height: 35px;
+	background-color: #55ACFE;
+	color: #fff;
+	border-radius: 3px;
+	border: none;
+}
+.profile-btn{
+	display: inline;
+	width: 120px;
+	height: 35px;
+	border: none;
+	padding-left: 18px;
+	text-align: left;
+}
 #mypolls-button{
 	height: 35px;
 	color: #000;
@@ -67,11 +102,6 @@ option[value=""][disabled]{
 	background-color: #afafaf;
 	color: #fff;
 	border: none;
-}
-#profile-button{
-	height: 35px;
-	border: none;
-	width: 120px;
 }
 #twitter-sign-button{
     height: 35px;
@@ -121,6 +151,7 @@ option[value=""][disabled]{
 	border: 1px solid #999999;
 	padding-left: 10px;
 }
+
 #submit-new-option{
 	display: block;
 	margin: 10px;

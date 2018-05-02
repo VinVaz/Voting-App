@@ -3,7 +3,9 @@
   <head>
     <title>YourPoll</title>
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
   </head>
   
   <body>
@@ -17,11 +19,12 @@
 	      <a href="/mypolls"><button id="mypolls-button">My Polls</button></a>
 		  <a href="/newpoll"><button id="newpoll-button">New Poll</button></a>		
 		</div>
-	    <form class="profile-form">
-	      <select value="Foo" id="profile-button">
-		    <option>Sign out</option>
-		  </select>
-	    </form>
+		<div class="drop-down">
+	      <button class="profile-btn" id="profile-btn">Profile    <i class="fa fa-caret-down"></i></button>
+	      <div id="profile-list" class="profile-list" style="display:none">
+		    <a><button class="signout-btn">Sign out</button></a>
+		  </div>
+	    </div>
 	  </div>
     </div>
 	<!-------------------------------------------------------------------->
@@ -31,7 +34,7 @@
 		  <p class="submit-text">I want to vote for:</p>
 		  <select id="drop-down-list" class="drop-down-list">
 			<option value="" disabled selected>choose an option:</option>
-			<option>I want a custom option</option>
+			<option value="newOption">I want a custom option</option>
 		  </select>
 		  <input id="submit-button" type="submit" value="Submit"></input>
 	    </form>
@@ -49,6 +52,7 @@
 	  <p>App build by <a href="https://github.com/VinVaz" target="_blank">VinVaz<a></p>
 	</div>
 	    <script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type="text/javascript" src="common/signout.js"></script>
 		<script type="text/javascript" src="controllers/chartController_client.js"></script>
 		<script type="text/javascript" src="controllers/listController_client.js"></script>
   </body>
