@@ -6,8 +6,8 @@ var Users = require('../models/users.js');
 function PollHandler(){
     
 	this.addOption = function(req, res){
-		var name = req.session.poll
-	    var option = req.query["option"];
+		var name = req.session.poll;
+	    var option = req.query["newoption"];
 	    Users
 	        .findOneAndUpdate({$and: [{"poll.options.name": {$ne: option}}, {"poll.name": name}]}, {$push: {"poll.options": {"name":option, "clicks": 1}}})
 			.exec(function(err, result){

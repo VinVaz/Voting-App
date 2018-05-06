@@ -85,10 +85,11 @@ option[value=""][disabled]{
 }
 .profile-btn{
 	display: inline;
-	width: 120px;
+	min-width: 80px;
 	height: 35px;
 	border: none;
-	padding-left: 18px;
+	padding-left: 15px;
+	padding-right: 15px;
 	text-align: left;
 }
 #mypolls-button{
@@ -237,4 +238,8 @@ option[value=""][disabled]{
 .footnote{
 	margin: 15px;
 	text-align: center;
+}
+.caret-align{
+	position: relative;
+	left: 8px;
 }

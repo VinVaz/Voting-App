@@ -47,13 +47,9 @@ module.exports = function(app){
     
 	app.route('/profile/:poll/api/clicks/update')
 	    .get(clickHandler.addClicks)	
-    
+		
 	app.route('/api/polls')
 	    .get(pollServer);
-	
-	app.route('/newoption').get(function(req, res){
-		res.sendFile(path + '/public/newoption.html');
-	});
 	
 	app.route('/newoption/add')
 		.get(loggedHandler.addOption)

@@ -24,7 +24,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable(contentArr);
         var options = {
-          title: name
+          title: name,
+		  backgroundColor: '#dedede'
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);

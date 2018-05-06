@@ -16,7 +16,7 @@
 	window.onclick = function(event){
 	  if(!event.target.matches(".profile-btn")){
           var a = document.getElementById('profile-list');
-          a.style.display = 'none'	  
+          a.style.display = 'none';
 	  }	
 	}
 	
