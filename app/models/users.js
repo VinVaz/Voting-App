@@ -10,7 +10,8 @@ var User = new Schema({
 		username: String,
 		publicRepos: Number
 	},
-	poll:{
+	polls:[{
+		_id: false,
 		name: String,
 		options: [
 		    {   
@@ -19,6 +20,6 @@ var User = new Schema({
 			    clicks: Number
 		    }
 		]
-	}
+	}]
 });
 module.exports = mongoose.model('User', User);
