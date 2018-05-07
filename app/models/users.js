@@ -12,7 +12,7 @@ var User = new Schema({
 	},
 	poll:{
 		name: String,
-		options: [
+		options:[
 		    {   
 			    _id: false,
 			    name: String,

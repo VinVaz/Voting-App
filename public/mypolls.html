@@ -2,13 +2,13 @@
 <html>
   <head>
     <title>YourPoll</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   
   <body>
     <!-------------------------------------------------------------------->
-    <div class="header-container">
+   <div class="header-container">
 	  <div class="left-header">
         <span id="header-program-name">YourPoll</span>
 	  </div><div class="right-header">
@@ -28,17 +28,17 @@
 	<!-------------------------------------------------------------------->
 	<div class="body-container">
 	  <div class= "app-main-message">
-		<p>Look at the polls you've made:</p>
+	    <p>Select a poll to see the results.</p>
+		<p>Login to create a new poll.</p>
 	  </div>
-	  <div id="poll-boxes-space">
-	  </div>
+	  <div id="poll-boxes-space"></div>
 	</div>
 	<div class="footnote">
 	    <p>App build by <a href="https://github.com/VinVaz" target="_blank">VinVaz<a></p>
 	</div>
 	<script type="text/javascript" src="common/ajax-functions.js"></script>
 	<script type="text/javascript" src="common/signout.js"></script>
-	<script type="text/javascript" src="controllers/pollController_client.js"></script>
+	<script type="text/javascript" src="controllers/mypollsController_client.js"></script>
   </body>
   
 </html>

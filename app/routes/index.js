@@ -4,6 +4,7 @@ const path = process.cwd();
 const ClickHandler = require(path + '/app/controllers/clickHandler_server.js');
 const LoggedHandler = require(path + '/app/controllers/privateUserHandler_server.js');
 var pollServer = require(path + '/app/controllers/pollHandler_server.js');
+var mypollsServer = require(path + '/app/controllers/mypollsHandler_server.js');
 
 module.exports = function(app){
 	function isLogged(req, res, next){
@@ -52,7 +53,7 @@ module.exports = function(app){
 	    .get(pollServer);
 	////////
 	app.route('/api/specialpolls')
-	    .get(pollServer);
+	    .get(mypollsServer);
 	////////
 	app.route('/newoption/add')
 		.get(loggedHandler.addOption)
