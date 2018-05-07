@@ -50,7 +50,10 @@ module.exports = function(app){
 		
 	app.route('/api/polls')
 	    .get(pollServer);
-	
+	////////
+	app.route('/api/specialpolls')
+	    .get(pollServer);
+	////////
 	app.route('/newoption/add')
 		.get(loggedHandler.addOption)
 	

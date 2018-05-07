@@ -22,7 +22,7 @@
 	}
 	
 	function updateDropDownList(data){
-	  var pollObject = JSON.parse(data);
+	  var pollObject = JSON.parse(data);	  		
 	  dropDownList.setAttribute('NAME', pollObject.poll.name);
 	  var numOfOptions = pollObject.poll.options.length;
 	  for(var i = 0; i < numOfOptions; i++){

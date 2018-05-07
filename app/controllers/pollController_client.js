@@ -22,7 +22,7 @@
 	function updatePollBox(data){
 		var pollObject = JSON.parse(data);
 		for(var i = 0; i < pollObject.length; i++){
-			var pollName = pollObject[i].name;
+			var pollName = pollObject[i];
 		    createNewPollBox(pollName);
 		}	
 	}
