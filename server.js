@@ -3,10 +3,12 @@
 var express = require('express'),
     routes = require('./app/routes/index.js'),
 	mongoose = require('mongoose'),
+	passport = require('passport'),
 	session = require('express-session');
 	
 var app = express();
 require('dotenv').load();
+require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);	
 mongoose.Promise = global.Promise;
@@ -20,11 +22,14 @@ mongoose.Promise = global.Promise;
 		resave: false,
 		saveUninitialized: true
 	}));
-	
-	routes(app);
-var PORT = process.env.PORT || 8080;
 
-app.listen(PORT, function(){
+	app.use(passport.initialize());
+	app.use(passport.session());
+	
+	routes(app, passport);
+    var PORT = process.env.PORT || 8080;
+
+    app.listen(PORT, function(){
 	console.log("Node.js listening on port: "+ PORT +"...");
 });
 

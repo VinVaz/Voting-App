@@ -6,28 +6,35 @@ const LoggedHandler = require(path + '/app/controllers/privateUserHandler_server
 var pollServer = require(path + '/app/controllers/pollHandler_server.js');
 var mypollsServer = require(path + '/app/controllers/mypollsHandler_server.js');
 
-module.exports = function(app){
-	function isLogged(req, res, next){
-		var ImLogged = false;
-		if(ImLogged){
-			return next();
-		}else{
-			res.redirect('/loggedprofile');
-		}
-	}
+module.exports = function(app, passport){
 	
 	var clickHandler = new ClickHandler();
 	var loggedHandler = new LoggedHandler();
 	
 	app.route('/').get(function(req, res){
-		res.sendFile(path + '/public/index.html');
+		if(req.isAuthenticated()){
+			res.sendFile(path + '/public/loggedindex.html');
+		}
+		else{
+			res.sendFile(path + '/public/index.html');
+		}
 	});
 	app.route('/home').get(function(req, res){
 	    res.redirect('/');
 	});
-	app.route('/profile').get(isLogged, function(req, res){
-		   res.sendFile(path + '/public/profile.html');
+	app.route('/profile').get(function(req, res){
+		if(req.isAuthenticated()){
+			res.sendFile(path + '/public/loggedprofile.html');
+		}
+		else{
+			res.sendFile(path + '/public/profile.html');
+		}
 	});
+	app.route('/logout')
+        .get(function(req, res){
+			req.logout();
+			res.redirect('/home');
+		});
 	////////////////IF LOGGED///////////////////////////
 	app.route('/newpoll').get(function(req, res){
 		res.sendFile(path + '/public/newpoll.html');
@@ -35,9 +42,19 @@ module.exports = function(app){
 	app.route('/mypolls').get(function(req, res){
 		res.sendFile(path + '/public/mypolls.html');
 	});
-	app.route('/loggedprofile').get(function(req, res){
-		res.sendFile(path + '/public/loggedprofile.html');
-	});
+		////////
+	app.route('/api/specialpolls')
+	    .get(mypollsServer);
+	////////
+	app.route('/newoption/add')
+		.get(loggedHandler.addOption)
+	
+	app.route('/newpoll/add')
+		.get(loggedHandler.addPoll)
+		.delete(loggedHandler.deletePoll);
+	
+	app.route('/newpoll/delete')
+		.get(loggedHandler.deletePoll)
 	/////////////////////////////////////////////////////
 	app.route('/profile/:poll').get(function(req, res){
 		   req.session.poll = req.params.poll
@@ -51,17 +68,13 @@ module.exports = function(app){
 		
 	app.route('/api/polls')
 	    .get(pollServer);
-	////////
-	app.route('/api/specialpolls')
-	    .get(mypollsServer);
-	////////
-	app.route('/newoption/add')
-		.get(loggedHandler.addOption)
+	app.route('/auth/github')
+		.get(passport.authenticate('github'));
 	
-	app.route('/newpoll/add')
-		.get(loggedHandler.addPoll)
-		.delete(loggedHandler.deletePoll);
+	app.route('/auth/github/callback')
+	    .get(passport.authenticate('github', {
+		    successRedirect: '/',
+		    failureRedirect: '/'
+	    }));
 	
-	app.route('/newpoll/delete')
-		.get(loggedHandler.deletePoll)
 }

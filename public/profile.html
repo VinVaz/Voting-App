@@ -8,14 +8,14 @@
   
   <body>
   <!-------------------------------------------------------------------->
-  <div class="header-container">
+   <div class="header-container">
 	  <div class="left-header">
         <span id="header-program-name">YourPoll</span>
 	  </div><div class="right-header">
-	    <a href="/home"><button id="home-button">HOME</button></a>
+	      <button id="home-button">HOME</button>
 		<div id="authorized-head-buttons">
 		</div>
-	    <button id="twitter-sign-button">Sign in with Twitter</button>
+		<a href="/auth/github"><button id="twitter-sign-button">Sign in with Twitter</button></a>
 	  </div>
     </div>
 	<!-------------------------------------------------------------------->
@@ -23,7 +23,7 @@
 	  <div class= "voting-area">
 	    <p class="submit-text">I want to vote for:</p>
 		<form action="/profile/:poll/api/clicks/update">
-		  <select id="drop-down-list">
+		  <select id="drop-down-list" class="drop-down-list">
 			<option value="" disabled selected>choose an option:</option>
 		  </select>
 		  <input id="submit-button" type="submit" value="Submit"></input>

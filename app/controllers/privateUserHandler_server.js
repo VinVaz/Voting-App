@@ -3,6 +3,19 @@
 var path = process.cwd();
 var Users = require('../models/users.js');
 
+var objGithub = {
+	  github:{
+		id: "abcd",
+		displayName: "john",
+		username: "jj",
+		publicRepos: 5
+	  },
+	  poll:{
+		  name: "Best letter"
+	  }
+	}
+
+
 function PollHandler(){
     
 	this.addOption = function(req, res){
@@ -12,7 +25,7 @@ function PollHandler(){
 	        .findOneAndUpdate({$and: [{"poll.options.name": {$ne: option}}, {"poll.name": name}]}, {$push: {"poll.options": {"name":option, "clicks": 1}}})
 			.exec(function(err, result){
 			    if(err){throw err;}
-			    res.redirect('/loggedprofile');
+			    res.redirect('/profile');
 		    });
 	};
 	this.deleteOption = function(req, res){  
@@ -27,8 +40,10 @@ function PollHandler(){
 		var name = req.query["name"]
 	    var options = req.query["option"];
         var optionsArr = options.split(",");
+
 		if(optionsArr.length > 0){
-		    for(var i=0; i<optionsArr.length; i++){
+		  Users.create(objGithub, function(err, doc){
+			for(var i=0; i<optionsArr.length; i++){
 			  var mongoQuery = {"poll.name": name};
 		      var mongoOperator = {$addToSet: {"poll.options": {"name":optionsArr[i], "clicks": 1}}}
 			  Users
@@ -37,6 +52,7 @@ function PollHandler(){
 			      if(err){throw err;}
 		        });
 			}
+		  });   
 		}
     res.redirect('/newpoll');		
 	};
