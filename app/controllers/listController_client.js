@@ -3,7 +3,9 @@
 (function(){
 	var dropDownList = document.getElementById("drop-down-list");
 	var submitButton = document.getElementById("submit-button");
-	var newOptionInput = document.getElementById("new-option-input");
+	var newOptionInput = document.getElementById("new-option-input")
+	var removePollBtn = document.getElementById("remove-button");
+	var deletePollBtn = document.getElementById("remove-button");
 	var apiUrl = appUrl + '/profile/:poll/api/clicks';
 
 
@@ -31,6 +33,23 @@
 	  }
 	  setLastOption();
 	}
+    ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
+	
+	//hides the remove poll's button if the current poll its not some of the user's poll
+	  var currentPollUrl = appUrl + '/current';
+	  ajaxFunctions.ready(ajaxFunctions.newRequest('GET', currentPollUrl, function(data){
+		var currentPoll = JSON.parse(data);
+	    var mypollsUrl = appUrl + '/api/:user/polls';
+		ajaxFunctions.newRequest('GET', mypollsUrl, function(data){
+		  var myPollsArray = JSON.parse(data);
+		  if(myPollsArray.includes(currentPoll)){
+			  deletePollBtn.style.display = "block"
+		  }
+		  else{
+			  deletePollBtn.style.display = "none"
+		  }
+	    });
+	  }));
 	
 	window.onload = function(){
 		var submitNewOption = document.getElementById("submit-new-option");
@@ -53,8 +72,6 @@
 				});
 			}
 		}
-  		
 	}
 	
-	ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
 })();

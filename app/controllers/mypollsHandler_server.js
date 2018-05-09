@@ -6,7 +6,7 @@ var Users = require('../models/users.js');
 module.exports = function pollApiServer(req, res){  
 
 Users
-  .find({"github.id":"abcd"}, {'_id': false, 'poll.name': true})
+  .find({"github.id":req.user.github.id}, {'_id': false, 'poll.name': true})
   .exec(function(err, result){
     if(err){throw err;}
     var message = [];

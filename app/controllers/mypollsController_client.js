@@ -2,7 +2,7 @@
 
 (function(){
 	var boxSpace = document.getElementById("poll-boxes-space");
-	var apiUrl = appUrl + '/api/specialpolls';
+	var apiUrl = appUrl + '/api/:user/polls';
 	
 	function createNewPollBox(pollName){
 		

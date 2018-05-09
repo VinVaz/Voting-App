@@ -35,6 +35,7 @@ module.exports = function(app, passport){
 			req.logout();
 			res.redirect('/home');
 		});
+
 	////////////////IF LOGGED///////////////////////////
 	app.route('/newpoll').get(function(req, res){
 		res.sendFile(path + '/public/newpoll.html');
@@ -43,7 +44,16 @@ module.exports = function(app, passport){
 		res.sendFile(path + '/public/mypolls.html');
 	});
 		////////
-	app.route('/api/specialpolls')
+	app.route('/api/:user/user').get(function(req, res){
+		if(req.isAuthenticated()){
+			res.json(req.user.github)
+		}
+		else{
+			res.redirect('/home')
+		}
+	});
+		
+	app.route('/api/:user/polls')
 	    .get(mypollsServer);
 	////////
 	app.route('/newoption/add')
@@ -59,6 +69,12 @@ module.exports = function(app, passport){
 	app.route('/profile/:poll').get(function(req, res){
 		   req.session.poll = req.params.poll
 		   res.redirect('/profile');
+	});
+    app.route('/current').get(function(req, res){
+		if(req.session.poll){
+			res.json(req.session.poll)
+		}
+		else res.redirect('/home');
 	});
 	app.route('/profile/:poll/api/clicks')
 	    .get(clickHandler.getClicks)
