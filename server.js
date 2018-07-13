@@ -7,6 +7,7 @@ var express = require('express'),
 	session = require('express-session');
 	
 var app = express();
+//dotenv allows tha loading of environment variables from .env
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
@@ -18,9 +19,9 @@ mongoose.Promise = global.Promise;
 	app.use('/common', express.static(process.cwd()+'/app/common'));
 	
 	app.use(session({
-		secret: 'secretYourPoll',
-		resave: false,
-		saveUninitialized: true
+		secret: 'bb65e7ju764h3gtrbv',
+		resave: true,
+		saveUninitialized: false
 	}));
 
 	app.use(passport.initialize());
@@ -30,6 +31,6 @@ mongoose.Promise = global.Promise;
     var PORT = process.env.PORT || 8080;
 
     app.listen(PORT, function(){
-	console.log("Node.js listening on port: "+ PORT +"...");
+	console.log("Node.js is listening on port: " + PORT + "...");
 });
 

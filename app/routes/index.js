@@ -11,86 +11,80 @@ module.exports = function(app, passport){
 	var clickHandler = new ClickHandler();
 	var loggedHandler = new LoggedHandler();
 	
-	app.route('/').get(function(req, res){
+	
+	//AUTHENTICATION:	
+	app.get('/auth/twitter', passport.authenticate('twitter'));
+	app.get('/auth/twitter/callback', 
+	  passport.authenticate('twitter', { failureRedirect: '/' }),
+	  function(req, res) {
+		// Successful authentication, redirect home.
+		res.redirect('/');
+	  });
+	
+	app.get('/', function(req, res){
 		if(req.isAuthenticated()){
 			res.sendFile(path + '/public/loggedindex.html');
-		}
-		else{
+		} else {
 			res.sendFile(path + '/public/index.html');
 		}
 	});
-	app.route('/home').get(function(req, res){
+	app.get('/home', function(req, res){
 	    res.redirect('/');
 	});
-	app.route('/profile').get(function(req, res){
+	app.get('/profile', function(req, res){
 		if(req.isAuthenticated()){
 			res.sendFile(path + '/public/loggedprofile.html');
-		}
-		else{
+		} else{
 			res.sendFile(path + '/public/profile.html');
 		}
 	});
+	app.get('/newpoll', function(req, res){
+		res.sendFile(path + '/public/newpoll.html');
+	});
+	app.get('/mypolls', function(req, res){
+		res.sendFile(path + '/public/mypolls.html');
+	});
+	
 	app.route('/logout')
         .get(function(req, res){
 			req.logout();
 			res.redirect('/home');
-		});
-
-	////////////////IF LOGGED///////////////////////////
-	app.route('/newpoll').get(function(req, res){
-		res.sendFile(path + '/public/newpoll.html');
-	});
-	app.route('/mypolls').get(function(req, res){
-		res.sendFile(path + '/public/mypolls.html');
-	});
-		////////
+		});	
+	
 	app.route('/api/:user/user').get(function(req, res){
 		if(req.isAuthenticated()){
-			res.json(req.user.github)
-		}
-		else{
-			res.redirect('/home')
+			//req.user is provided by passport after the authentication
+			res.json(req.user.twitter);
+		} else{
+			res.redirect('/home');
 		}
 	});
-		
 	app.route('/api/:user/polls')
-	    .get(mypollsServer);
-	////////
-	app.route('/newoption/add')
-		.get(loggedHandler.addOption)
-	
-	app.route('/newpoll/add')
-		.get(loggedHandler.addPoll)
-		.delete(loggedHandler.deletePoll);
-	
-	app.route('/newpoll/delete')
-		.get(loggedHandler.deletePoll)
-	/////////////////////////////////////////////////////
-	app.route('/profile/:poll').get(function(req, res){
-		   req.session.poll = req.params.poll
+	    .get(mypollsServer)
+		.delete(loggedHandler.deletePoll)
+
+    //from now on the currently viewed poll is saved in session:
+	app.route('/profile/:poll')
+	  .get(function(req, res){
+		   req.session.poll = req.params.poll;
 		   res.redirect('/profile');
-	});
-    app.route('/current').get(function(req, res){
+	  }) 
+	
+	app.get('/newoption/add', loggedHandler.addOption);	
+	app.get('/newpoll/add', loggedHandler.addPoll)
+		
+   
+	app.route('/profile/:poll/api/clicks')
+	    .get(clickHandler.getClicks)
+	app.route('/profile/:poll/api/clicks/update')
+	    .get(clickHandler.addClicks)	
+		
+	app.route('/current').get(function(req, res){
 		if(req.session.poll){
 			res.json(req.session.poll)
 		}
 		else res.redirect('/home');
 	});
-	app.route('/profile/:poll/api/clicks')
-	    .get(clickHandler.getClicks)
-    
-	app.route('/profile/:poll/api/clicks/update')
-	    .get(clickHandler.addClicks)	
-		
-	app.route('/api/polls')
-	    .get(pollServer);
-	app.route('/auth/github')
-		.get(passport.authenticate('github'));
 	
-	app.route('/auth/github/callback')
-	    .get(passport.authenticate('github', {
-		    successRedirect: '/',
-		    failureRedirect: '/'
-	    }));
-	
+	app.get('/api/polls', pollServer);
 }

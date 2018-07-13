@@ -16,18 +16,18 @@ function PollHandler(){
 		    });
 	};
 	this.addPoll = function(req, res){
-		var name = req.query["name"]
+		var name = req.query["name"];
 	    var options = req.query["option"];
         var optionsArr = options.split(",");
-		var profile = req.user.github;
+		var profile = req.user.twitter;
+
 		
 	    if(optionsArr.length > 0){
 
 				var newUser = new Users({
-				  "github.id" : profile.id,
-				  "github.username" : profile.username,
-				  "github.displayName" : profile.displayName,
-				  "github.publicRepos" : profile.publicRepos,
+				  "twitter.id" : profile.id,
+				  "twitter.username" : profile.username,
+				  "twitter.displayName" : profile.displayName,
 				  "poll.name" : name
 				});
 		

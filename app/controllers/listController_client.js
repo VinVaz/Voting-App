@@ -4,7 +4,7 @@
 	var dropDownList = document.getElementById("drop-down-list");
 	var submitButton = document.getElementById("submit-button");
 	var newOptionInput = document.getElementById("new-option-input")
-	var removePollBtn = document.getElementById("remove-button");
+
 	var deletePollBtn = document.getElementById("remove-button");
 	var apiUrl = appUrl + '/profile/:poll/api/clicks';
 
@@ -35,7 +35,21 @@
 	}
     ajaxFunctions.ready(ajaxFunctions.newRequest('GET', apiUrl, updateDropDownList));
 	
-	//hides the remove poll's button if the current poll its not some of the user's poll
+	
+	deletePollBtn.addEventListener('click', function(){
+	  var myUrl = appUrl + '/api/:user/polls';
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('DELETE', myUrl, true);
+	  xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4){
+		  window.location.replace(appUrl +'/mypolls');
+		}
+	  }
+	  xhr.send(null);
+	});
+    
+			  
+	//hides the remove-poll's button if the current poll does not belong to the user
 	  var currentPollUrl = appUrl + '/current';
 	  ajaxFunctions.ready(ajaxFunctions.newRequest('GET', currentPollUrl, function(data){
 		var currentPoll = JSON.parse(data);
@@ -63,6 +77,7 @@
 				dropDownList.removeAttribute("NAME");
 			}
 			else{
+				//it needs refactoring:
 				form.setAttribute("ACTION", "/profile/:poll/api/clicks/update");
 				newOptionInput.style.display = "none";
 				submitNewOption.removeAttribute("NAME");
